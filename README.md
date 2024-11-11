@@ -5,7 +5,7 @@ This script, `syrin-bridge`, connects to RabbitMQ, ensures the necessary queues 
 
 ## Demo
 
-![Application Demo](./driagrams/Syrin-Bridge.gif)
+![Application Demo](./diagram/Syrin-Bridge.gif)
 
 ## Table of Contents
 - [Installation](#installation)

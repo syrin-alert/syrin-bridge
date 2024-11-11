@@ -5,7 +5,7 @@ Este script, `syrin-bridge`, conecta-se ao RabbitMQ, garante que as filas necess
 
 ## Demo
 
-![Application Demo](./driagrams/Syrin-Bridge.gif)
+![Application Demo](./diagram/Syrin-Bridge.gif)
 
 ## Tabela de Conteúdos
 - [Instalação](#instalação)
