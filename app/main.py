@@ -98,7 +98,7 @@ def consume_messages():
         setup_channel.close()
 
         # Declare all queues to ensure they exist before consuming
-        for queue in ['00_syrin_notification_error', '00_syrin_notification_warning']:
+        for queue in ['00_syrin_notification_critical', '00_syrin_notification_warning']:
             channel = connection.channel()
             channel.queue_declare(queue=queue, durable=True)
             logging.info(f"Queue '{queue}' checked or created.")
@@ -108,7 +108,7 @@ def consume_messages():
 
         while True:
             # Prioritize the error queue
-            process_queue(connection, '00_syrin_notification_error')
+            process_queue(connection, '00_syrin_notification_critical')
             # Process warning queue only if the error queue is empty
             process_queue(connection, '00_syrin_notification_warning')
             time.sleep(1)  # Add a small delay to prevent continuous polling
