@@ -46,7 +46,7 @@ The following queues are managed in RabbitMQ:
 - `01_syrin_notification_message_process`: For general message notifications.
 - `02_syrin_notification_message_process_humanized`: For humanized message processing.
 
-Priority is given to messages in `00_syrin_notification_error` over `00_syrin_notification_warning`.
+Priority is given to messages in `00_syrin_notification_critical` over `00_syrin_notification_warning`.
 
 ## Logging
 

@@ -46,7 +46,7 @@ As seguintes filas são gerenciadas no RabbitMQ:
 - `01_syrin_notification_message_process`: Para notificações de mensagens gerais.
 - `02_syrin_notification_message_process_humanized`: Para processamento de mensagens humanizadas.
 
-A prioridade é dada às mensagens em `00_syrin_notification_error` sobre `00_syrin_notification_warning`.
+A prioridade é dada às mensagens em `00_syrin_notification_critical` sobre `00_syrin_notification_warning`.
 
 ## Logs
 
