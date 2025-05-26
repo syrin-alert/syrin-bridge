@@ -17,7 +17,7 @@ deployment:
     - apps: services
   containers:
     - name: syrin-bridge
-      image: ghcr.io/syrin-bridge/
+      image: ghcr.io/syrin-alert/
       resources:
         requests:
           memory: "128Mi"
