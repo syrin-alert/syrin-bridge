@@ -28,8 +28,6 @@ deployment:
       env:
         - name: TZ
           value: "America/Sao_Paulo"
-        - name: PORT
-          value: "80"
         # rabbitmq
         - name: RABBITMQ_HOST
           value: "svc-rabbitmq.rabbitmq.svc.cluster.local"
