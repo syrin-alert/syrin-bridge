@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     permissions:
-      contents: read
+      contents: write
       packages: write
       attestations: write
       id-token: write
@@ -22,6 +22,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Extract repository owner and name in lowercase
+        run: |
+          echo "OWNER=$(echo $GITHUB_REPOSITORY_OWNER | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+          echo "REPO_NAME=$(basename $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
@@ -39,8 +44,23 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/syrin-bridge:latest
-            ghcr.io/${{ github.repository_owner }}/syrin-bridge:1.0.${{ github.run_number }}
+            ghcr.io/${{ env.OWNER }}/${{ env.REPO_NAME }}:latest
+            ghcr.io/${{ env.OWNER }}/${{ env.REPO_NAME }}:1.0.${{ github.run_number }}
 
       - name: Log out of GitHub Container Registry
         run: docker logout ghcr.io
+
+      - name: Update version in values.yaml
+        run: |
+          VERSION=1.0.${{ github.run_number }}
+          FILE_PATH="helm/values.yaml"
+          sed -i "s/^version: .*/version: ${VERSION}/" $FILE_PATH
+
+      - name: Commit and push updated values.yaml
+        run: |
+          VERSION=1.0.${{ github.run_number }}
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add helm/values.yaml
+          git commit -m "Update version to ${VERSION}"
+          git push origin main

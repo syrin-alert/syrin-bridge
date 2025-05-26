@@ -18,3 +18,5 @@ EXPOSE 80
 
 # /home/vagrant/.local/share/tts/
 # docker build -t didevlab/poc:syrin_bridge_queue-1.0.0 .
+
+CMD ["python", "main.py"]

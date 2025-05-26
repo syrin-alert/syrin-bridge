@@ -1,0 +1,51 @@
+##############################
+# App Definition
+app: syrin-bridge
+component: bridge
+core: syrin
+version: 1.0.18
+
+##############################
+# Definition of the Deployment
+deployment:
+  replicas: 1
+  revisionHistoryLimit: 3
+  sendlogs: "true"
+  stack: syrin
+  lbtype: internal
+  affinity:
+    - apps: services
+  containers:
+    - name: syrin-bridge
+      image: ghcr.io/syrin-bridge/
+      resources:
+        requests:
+          memory: "128Mi"
+          cpu: "50m"
+        limits:
+          memory: "512Mi"
+          cpu: "1"
+      env:
+        - name: TZ
+          value: "America/Sao_Paulo"
+        - name: PORT
+          value: "80"
+        # rabbitmq
+        - name: RABBITMQ_HOST
+          value: "svc-rabbitmq.rabbitmq.svc.cluster.local"
+        - name: RABBITMQ_PORT
+          value: "5672"
+        - name: RABBITMQ_VHOST
+          value: "syrin"
+        - name: RABBITMQ_USER
+          valueFrom:
+            secretKeyRef:
+              name: s-rabbitmq
+              key: RABBITMQ_DEFAULT_USER
+        - name: RABBITMQ_PASS
+          valueFrom:
+            secretKeyRef:
+              name: s-rabbitmq
+              key: RABBITMQ_DEFAULT_PASS
+
+
