@@ -6,4 +6,3 @@ OUTPUT_QUEUES = [
     '02_syrin_notification_audio_process_category',
     '02_syrin_notification_message_process_category'
 ]
-01_syrin_notification_message_process
