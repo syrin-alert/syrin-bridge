@@ -6,8 +6,8 @@ OUTPUT_QUEUES = [
 ]
 CREATED_QUEUES = [
     '02_syrin_notification_audio_process_categories,02_syrin_notification_audio_reprocess_categories', # Esse processo gerar o texto para ser transformando em TTS
-    '03_syrin_notification_audio_process_categories,03_syrin_notification_audio_reprocess_categories', # Esse processso irar transformando o texto em TTS
+    '03_syrin_notification_audio_process_humanization,03_syrin_notification_audio_reprocess_humanization', # Esse processso irar transformando o texto em TTS
 
     '02_syrin_notification_message_process_categories,02_syrin_notification_message_reprocess_categories', # Esse processo gerar o texto para ser enviado ao telegram
-    '03_syrin_notification_message_process_categories,03_syrin_notification_message_reprocess_categories' # Esse processo irar enviando o texto ao telegram
+    '03_syrin_notification_message_process_humanization,03_syrin_notification_message_reprocess_humanization' # Esse processo irar enviando o texto ao telegram
 ]
