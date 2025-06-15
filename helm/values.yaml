@@ -3,7 +3,7 @@
 app: syrin-bridge
 component: bridge
 core: syrin
-version: 1.0.12
+version: 1.0.13
 
 ##############################
 # Definition of the Deployment
